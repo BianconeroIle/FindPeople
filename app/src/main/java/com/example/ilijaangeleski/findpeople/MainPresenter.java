@@ -16,11 +16,12 @@ public class MainPresenter {
         this.view = view;
     }
     public void onSearch(String firstName,String lastName,String city){
+        mainManager.getUsers();
          List<User> found = mainManager.findUser(firstName, lastName, city);
         view.update(found);
     }
-
-    public static List<User> getPeople() {
+    public List<User> getUsers(){
         return people;
     }
+
 }

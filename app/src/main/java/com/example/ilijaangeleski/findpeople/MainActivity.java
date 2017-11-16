@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements MainView{
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewAdapter(presenter.getPeople());
+        recyclerViewAdapter = new RecyclerViewAdapter(presenter.getUsers());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 

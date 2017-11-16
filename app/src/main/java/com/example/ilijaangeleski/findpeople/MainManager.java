@@ -24,16 +24,17 @@ public class MainManager {
 
     public List<User> findUser(String firstName, String lastName, String city) {
         List<User> foundUser = new ArrayList<>();
-        if (firstName != "" && firstName != null || lastName != "" && lastName != null || city != "" && city != null) {
             for (User user : people) {
-                for (User fuser : foundUser) {
-                    if (firstName.contains(user.getFirstName()) && lastName.contains(user.getLastName()) && city.contains(user.getCity())) {
-                        foundUser.add(fuser);
+                    if (firstName != null && !firstName.equals(" ")&& user.getFirstName().toLowerCase().contains(firstName)){
+                        foundUser.add(user);
                     }
                 }
-            }
+            return foundUser;
         }
-        return foundUser;
+
+
+    public List<User> getUsers(){
+        return people;
     }
 }
 
