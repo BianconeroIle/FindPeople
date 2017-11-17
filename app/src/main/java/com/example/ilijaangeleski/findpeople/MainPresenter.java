@@ -22,6 +22,7 @@ public class MainPresenter {
         view.update(found);
         if (mainManager.checkUserHasQuery(firstName, lastName, city)) {
             view.update(people);
+            
         }
     }
 
