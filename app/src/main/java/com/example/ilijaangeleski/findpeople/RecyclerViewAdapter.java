@@ -13,10 +13,10 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    List<User> items;
+    List<User> userList;
 
     public RecyclerViewAdapter(List<User> people) {
-        this.items = people;
+        this.userList = people;
     }
 
     @Override
@@ -29,15 +29,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
-        User user = items.get(position);
+        User user = userList.get(position);
         holder.firstName.setText(user.getFirstName());
         holder.lastName.setText(user.getLastName());
         holder.city.setText(user.getCity());
     }
+    public void updateList (List<User> foundUsers) {
+        if (foundUsers != null && foundUsers.size() > 0) {
+            userList.clear();
+            userList.addAll(foundUsers);
+            notifyDataSetChanged();
+        }
+    }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return userList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

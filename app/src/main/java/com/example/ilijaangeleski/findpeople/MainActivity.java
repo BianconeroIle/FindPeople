@@ -25,12 +25,10 @@ public class MainActivity extends AppCompatActivity implements MainView{
 
         presenter = new MainPresenter(this);
         initVariables();
-        findUser();
+
     }
 
-    public void findUser(){
-        presenter.onSearch(firstName.getText().toString(),lastName.getText().toString(),city.getText().toString());
-    }
+
 
 
     public void initVariables(){
@@ -48,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements MainView{
 
 
     @Override
-    public void update(List<User> users) {
-        recyclerViewAdapter.notifyDataSetChanged();
+    public void update(List<User> foundUsers) {
+        presenter.onSearch(firstName.getText().toString(),lastName.getText().toString(),city.getText().toString());
+        recyclerViewAdapter.updateList(foundUsers);
     }
 }
