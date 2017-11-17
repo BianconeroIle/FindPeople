@@ -1,4 +1,5 @@
 package com.example.ilijaangeleski.findpeople;
+
 import java.util.List;
 
 import static com.example.ilijaangeleski.findpeople.MainManager.people;
@@ -15,13 +16,16 @@ public class MainPresenter {
         mainManager = new MainManager();
         this.view = view;
     }
-    public void onSearch(String firstName,String lastName,String city){
-        mainManager.getUsers();
-         List<User> found = mainManager.findUser(firstName, lastName, city);
+
+    public void onSearch(String firstName, String lastName, String city) {
+        List<User> found = mainManager.findUser(firstName, lastName, city);
         view.update(found);
-    }
-    public List<User> getUsers(){
-        return people;
+        if (mainManager.checkUserHasQuery(firstName, lastName, city)) {
+            view.update(people);
+        }
     }
 
+    public List<User> getUsers() {
+        return people;
+    }
 }

@@ -24,16 +24,57 @@ public class MainManager {
 
     public List<User> findUser(String firstName, String lastName, String city) {
         List<User> foundUser = new ArrayList<>();
-            for (User user : people) {
-                    if (firstName != null && !firstName.equals(" ")&& user.getFirstName().toLowerCase().contains(firstName)){
-                        foundUser.add(user);
-                    }
-                }
-            return foundUser;
+        for (User user : people) {
+            if (isFirstNameNotNullAndInList(firstName, user)
+                    && isLastNameNotNullAndInList(lastName, user)
+                    && isCityNotNullAndInLIst(city, user)) {
+                foundUser.add(user);
+            } else if (isFirstNameNotNullAndInList(firstName, user)
+                    && isLastNameNotNullAndInList(lastName, user)) {
+                foundUser.add(user);
+            } else if (isFirstNameNotNullAndInList(firstName, user)
+                    && isCityNotNullAndInLIst(city, user)) {
+                foundUser.add(user);
+            } else if (isLastNameNotNullAndInList(lastName, user)
+                    && isCityNotNullAndInLIst(city, user)) {
+                foundUser.add(user);
+            }else if(isFirstNameNotNullAndInList(firstName,user)){
+                foundUser.add(user);
+            }else if(isLastNameNotNullAndInList(lastName,user)){
+                foundUser.add(user);
+            }else if(isCityNotNullAndInLIst(city,user)){
+                foundUser.add(user);
+            }
         }
 
+        return foundUser;
+    }
 
-    public List<User> getUsers(){
+    private boolean isCityNotNullAndInLIst(String city, User user) {
+        return city != null
+                && !city.equals("")
+                && user.getCity().toLowerCase().startsWith(city.toLowerCase());
+    }
+
+    private boolean isLastNameNotNullAndInList(String lastName, User user) {
+        return lastName != null
+                && !lastName.equals("")
+                && user.getLastName().toLowerCase().startsWith(lastName.toLowerCase());
+    }
+
+    private boolean isFirstNameNotNullAndInList(String firstName, User user) {
+        return firstName != null
+                && !firstName.equals("")
+                && user.getFirstName().toLowerCase().startsWith(firstName.toLowerCase());
+    }
+
+    public boolean checkUserHasQuery(String firstName, String lastName, String city) {
+        return (firstName == null || firstName.equals("")) &&
+                (lastName == null || lastName.equals("")) &&
+                (city == null || city.equals(""));
+    }
+
+    public List<User> getUsers() {
         return people;
     }
 }

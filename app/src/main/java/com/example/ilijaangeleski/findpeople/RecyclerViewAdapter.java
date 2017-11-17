@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,10 +14,11 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    List<User> userList;
+    private List<User> items;
 
     public RecyclerViewAdapter(List<User> people) {
-        this.userList = people;
+        this.items = new ArrayList<>();
+        this.items.addAll(people);
     }
 
     @Override
@@ -29,22 +31,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
-        User user = userList.get(position);
+        User user = items.get(position);
         holder.firstName.setText(user.getFirstName());
         holder.lastName.setText(user.getLastName());
         holder.city.setText(user.getCity());
     }
-    public void updateList (List<User> foundUsers) {
-        if (foundUsers != null && foundUsers.size() > 0) {
-            userList.clear();
-            userList.addAll(foundUsers);
+
+    public void updateList(List<User> foundUsers) {
+            items.clear();
+            items.addAll(foundUsers);
             notifyDataSetChanged();
-        }
     }
 
     @Override
     public int getItemCount() {
-        return userList.size();
+        return items.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
